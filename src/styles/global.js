@@ -2,17 +2,17 @@ import {createGlobalStyle} from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
     :root{
-        --brackground: #f0f2f5 ;
-        --red: #E52E4D;
-        --blue: #5429CC;
-        --green: #33CC95 ;
+        --brackground: ${props => props.theme.colors.brackground} ;
+        --red:  ${props => props.theme.colors.red};
+        --blue:  ${props => props.theme.colors.blue};
+        --green:  ${props => props.theme.colors.green} ;
 
-        --blue-light: #6933FF;
+        --blue-light:  ${props => props.theme.colors.blue_light};
         
-        --text-title: #363F5F ;
-        --text-body: #969CB3 ;
+        --text-title:  ${props => props.theme.colors.text_title} ;
+        --text-body:  ${props => props.theme.colors.text_body} ;
 
-        --shape: #FFFFFF ;
+        --shape:  ${props => props.theme.colors.shape} ;
     }
 
     
@@ -34,7 +34,7 @@ export const GlobalStyle = createGlobalStyle`
     } 
 
     body{
-        background: var(---brackground) ;
+        background: var(--brackground) ;
         -webkit-font-smooth: antialiased;
         // deixar a font mais bonita, mais nitida
     } 

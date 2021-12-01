@@ -4,7 +4,7 @@ import { darken, transparentize } from "polished";
 
 export const Container = styled.form`
     h2{
-        color: var(--text-title);
+        color: ${props => props.theme.title === 'dark' ? '#fff' : 'var(--text-title)'};
         font-size: 1.5rem;
         margin-bottom: 2rem;
     }
@@ -20,7 +20,7 @@ export const Container = styled.form`
         font-weight: 400;
 
         &::placeholder{
-            color: var(--text-body);
+            color: ${props => props.theme.title === 'dark' ? '#211A1D' : 'var(--text-body)'};
         }
         & + input{
             // todo input seguido de input
@@ -91,6 +91,7 @@ export const RadioBox = styled.button`
     span{
         font-size: 1rem;
         display: inline-block;
+        color: ${props => props.theme.title === 'dark' ? '#fff' : '#000'} ;
 
     }
 
