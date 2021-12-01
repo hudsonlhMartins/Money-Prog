@@ -7,8 +7,6 @@ export default function TransactionTable(){
 
     const {transactions} = useTransactions()
 
-    console.log(transactions)
-
     return(
         <Container>
             <table>

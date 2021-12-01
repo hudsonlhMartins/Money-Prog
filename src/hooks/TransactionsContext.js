@@ -9,9 +9,14 @@ export default function TransactionsProvider ({children}){
 
     const [transactions, setTransactions] = useState([])
 
-    useEffect( async ()=>{
-         await api.get ('/transactions')
-         .then(res => setTransactions(res.data.transactions))
+    useEffect(()=>{
+
+        async function load(){
+            await api.get ('/transactions')
+            .then(res => setTransactions(res.data.transactions))
+        }
+        load()
+
     },[])
 
     async function createTransactions (transactionPar){
