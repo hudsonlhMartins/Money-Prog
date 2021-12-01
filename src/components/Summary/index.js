@@ -1,4 +1,3 @@
-import { useContext } from 'react'
 import EntradasImg from '../../assets/entradas.svg'
 import SaidasImg from '../../assets/saidas.svg'
 import TotalImg from '../../assets/total.svg'

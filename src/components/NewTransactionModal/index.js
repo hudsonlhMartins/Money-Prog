@@ -52,7 +52,7 @@ export default function NewTransactionModal ({isNewTransactionModalOpen ,handleC
       >
 
             <button onClick={handleCloseNewTransactionModal} className='react-modal-close' >
-                <img src={CloseImg} />
+                <img src={CloseImg} alt='img' />
             </button>
 
             <Container onSubmit={handleCreateNewTransaction}>
@@ -77,7 +77,7 @@ export default function NewTransactionModal ({isNewTransactionModalOpen ,handleC
                         isActive={type ==='deposit'}
                         activeColor = 'green'
                     >
-                            <img src={Entradasimg} />
+                            <img src={Entradasimg} alt='img' />
                             <span>Entradas</span>
                     </RadioBox>
 
@@ -87,7 +87,7 @@ export default function NewTransactionModal ({isNewTransactionModalOpen ,handleC
                         isActive = {type ==='withdraw'}
                         activeColor = 'red'
                     >
-                        <img src={SaindasImg} />
+                        <img src={SaindasImg} alt='img' />
                         <span>Saidas</span>
                     </RadioBox>
 
