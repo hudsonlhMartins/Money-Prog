@@ -1,4 +1,4 @@
 [build]
 base = "."
-CI = "yarn build"
+CI = "npm run build"
 publish = "./build/"
