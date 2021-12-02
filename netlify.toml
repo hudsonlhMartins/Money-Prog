@@ -1,0 +1,4 @@
+[build]
+base = "."
+CI = "npm run build"
+publish = "./build/"
