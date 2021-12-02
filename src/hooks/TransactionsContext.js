@@ -1,6 +1,10 @@
 import {createContext, useEffect, useState} from 'react'
 import { useContext } from 'react/cjs/react.development'
-import { api } from '../services/axios'
+import {db} from '../firebase/FirebaseConnection'
+import {getDocs, addDoc, collection} from 'firebase/firestore'
+import {format} from 'date-fns'
+
+
 
 
 const TrasactionsContext = createContext([])
@@ -11,28 +15,52 @@ export default function TransactionsProvider ({children}){
 
     useEffect(()=>{
 
+        const collectionRef = collection(db, 'transactions')
+        const list = []
         async function load(){
-            await api.get ('/transactions')
-            .then(res => setTransactions(res.data.transactions))
+            await getDocs(collectionRef).then((snapshot)=>{
+                snapshot.forEach(doc =>{
+                    list.push({
+                        title: doc.data().title,
+                        value: doc.data().value,
+                        category: doc.data().category,
+                        type: doc.data().type,
+                        createAt: doc.data().createAt,
+                        createAtFormated: format(doc.data().createAt.toDate(), 'dd/MM/yyyy'),
+                        id: doc.id
+                    })
+                })
+            }).then(()=>{
+                setTransactions(list)
+            })
         }
         load()
 
     },[])
 
-    async function createTransactions (transactionPar){
+    async function createTransactions (title, value, category, type){
+        const collectionRef = collection(db, 'transactions')
+        const createAt = new Date()
+        await addDoc(collectionRef, {
+            title,
+            value: value,
+            category,
+            type,
+            createAt
 
-        const response = await api.post('/transactions', {
-            ...transactionPar,
-            createAt: new Date()
+        }).then((res)=>{
+            setTransactions([...transactions, {
+                title,
+                value,
+                category,
+                type,
+                createAt,
+                createAtFormated: format(createAt.toDate(), 'dd/MM/yyyy'),
+                id: res.id
+            }])
         })
-        const {transaction} = response.data
-
-        setTransactions([...transactions, transaction])
-        // como estou usar o context la no dashboard quando a transaction for atualizada ele__
-        // vai executa o map denv, e eu estou atualizando a transaction aqui com a respo__
-        // do post da api
+        
     }
-
 
     return(
         <TrasactionsContext.Provider value={{transactions, createTransactions}}>

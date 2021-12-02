@@ -13,7 +13,7 @@ export default function NewTransactionModal ({isNewTransactionModalOpen ,handleC
     const [type, setType] = useState('deposit')
 
     const [title, setTitle] = useState('')
-    const [amount, setValue] = useState('')
+    const [value, setValue] = useState('')
     const [category, setCategory] = useState('')
 
     const {createTransactions} = useTransactions()
@@ -21,15 +21,12 @@ export default function NewTransactionModal ({isNewTransactionModalOpen ,handleC
 
     async function handleCreateNewTransaction (e){
         e.preventDefault()
-        
        
              await createTransactions(
-                {
                     title,
-                    amount,
+                    value,
                     category,
                     type,
-                }
             )
         // ele vai esperar essa function com await para depois executar o resto
             setTitle('')
@@ -65,7 +62,7 @@ export default function NewTransactionModal ({isNewTransactionModalOpen ,handleC
 
                 <input type='number' 
                     placeholder='Valor'
-                    value={amount}  
+                    value={value}  
                     onChange={(e)=>{setValue(Number(e.target.value))}} 
                 />
 

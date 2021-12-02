@@ -13,12 +13,12 @@ export default function Summary (){
     const summary = transactions.reduce((acc, item)=>{
         // criando um objecto acc, esse item e todos item do array transaction ele vai pecorrer todos
         if(item.type === 'deposit'){
-            acc.deposits += Number(item.amount)
+            acc.deposits += Number(item.value)
             // aqui esse pegando o amount do item e colocando ele no objecto.depoist
-            acc.total +=Number(item.amount)
+            acc.total +=Number(item.value)
         }else{
-            acc.withdraws += Number(item.amount)
-            acc.total -=Number(item.amount)
+            acc.withdraws += Number(item.value)
+            acc.total -=Number(item.value)
 
         }
         
